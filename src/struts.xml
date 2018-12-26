@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+		
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <!-- <constant name="struts.devMode" value="true" /> -->
+
+    <package name="default" namespace="/" extends="struts-default">
+
+        <global-results>
+        <result>error.jsp</result>
+        </global-results>
+
+        <action name="checkAction" class="com.strutscrud.action.checkAction">
+            <result name="success" type="chain">showStudent</result>
+            <result name="login">/login.jsp</result>
+        </action>
+        <action name="logOut" class="com.strutscrud.action.checkAction" method="logOut">
+        <result>login.jsp</result>
+        </action>
+       
+
+        <action name="showStudent" class="com.strutscrud.action.StudentAction" method="showStudent">
+       <result>main.jsp</result>
+        </action>
+        <action name="deleteStudent" class="com.strutscrud.action.StudentAction" method="deleteStudent">
+        <result type="chain">showStudent</result>
+        
+        </action>
+        <action name="addStudent" class="com.strutscrud.action.StudentAction" method="addStudent">
+        <result type="chain">showStudent</result>
+        
+        </action>
+        <action name="getStudentById" class="com.strutscrud.action.StudentAction" method="getStudentById">
+        <result>updateStudent.jsp</result>
+        </action>
+        <action name="updateStudent" class="com.strutscrud.action.StudentAction" method="updateStudent">
+        <result type="chain">showStudent</result>
+        </action>
+        <action name="searchStudent" class="com.strutscrud.action.SearchAction" 
+        method="searchStudent">
+        <result>main.jsp</result>
+        
+        </action>
+    </package>
+
+    
+
+
+
+</struts>
